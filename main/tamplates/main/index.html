@@ -1,0 +1,54 @@
+{% extends "main/base.html" %}
+
+{% block title %}Главная - Детали Машинъ35{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h2>Профессиональный ремонт автомобилей</h2>
+    <p>Качественное обслуживание любых марок автомобилей</p>
+    <a href="{% url 'contacts' %}" class="btn">Связаться с нами</a>
+</section>
+
+<section class="services">
+    <h2>Наши услуги</h2>
+    <div class="cards">
+        <div class="card">
+            <h3>Замена масла</h3>
+            <p>Быстрая замена масла и фильтров.</p>
+        </div>
+        <div class="card">
+            <h3>Диагностика</h3>
+            <p>Компьютерная диагностика автомобиля.</p>
+        </div>
+        <div class="card">
+            <h3>Ремонт подвески</h3>
+            <p>Диагностика и ремонт ходовой части.</p>
+        </div>
+        <div class="card">
+            <h3>Замена сцепления</h3>
+            <p>Профессиональная замена сцепления.</p>
+        </div>
+    </div>
+</section>
+
+<section class="why-us">
+    <h2>Почему выбирают нас</h2>
+    <div class="cards">
+        <div class="stat-card">
+            <span class="stat-number"></span>
+            <span class="stat-label">Опыт 10+ лет</span>
+            <p>На рынке с 2014 года</p>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number"></span>
+            <span class="stat-label">Быстро</span>
+            <p>Выполняем работы в срок</p>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">💎</span>
+            <span class="stat-label">Гарантия</span>
+            <p>На все виды работ</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

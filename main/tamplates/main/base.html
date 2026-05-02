@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Детали Машинъ35{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Автосервис "Детали Машинъ35"</h1>
+            <nav>
+                <a href="{% url 'index' %}" class="{% if request.resolver_match.url_name == 'index' %}nav-active{% endif %}">Главная</a>
+                <a href="{% url 'about' %}" class="{% if request.resolver_match.url_name == 'about' %}nav-active{% endif %}">О нас</a>
+                <a href="{% url 'services' %}" class="{% if request.resolver_match.url_name == 'services' %}nav-active{% endif %}">Услуги</a>
+                <a href="{% url 'prices' %}" class="{% if request.resolver_match.url_name == 'prices' %}nav-active{% endif %}">Цены</a>
+                <a href="{% url 'contacts' %}" class="{% if request.resolver_match.url_name == 'contacts' %}nav-active{% endif %}">Контакты</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© {% now "Y" %} Детали Машинъ35 | Автосервис в Вологде</p>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
