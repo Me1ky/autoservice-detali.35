@@ -1,5 +1,5 @@
 """
-ASGI config for site project.
+ASGI config for myproject project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,7 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-# Указываем на папку site
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'site.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'myproject.settings')
 
 application = get_asgi_application()
