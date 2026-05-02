@@ -2,10 +2,13 @@ meta:
   environment: python
   toolchain:
     name: python
-    version: 3.10
+    version: 3.11
+
+build:
+  requirementsPath: requirements.txt
 
 run:
   command: |
     python manage.py migrate --noinput
     python manage.py collectstatic --noinput
-    gunicorn myproject.wsgi:application --bind 0.0.0.0:$PORT
+    gunicorn site.wsgi:application --bind 0.0.0.0:$PORT
