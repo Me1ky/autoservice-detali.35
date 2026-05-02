@@ -8,16 +8,17 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-#  Секретный ключ (берётся из переменных окружения, если есть)
+# SECURITY WARNING: keep the secret key used in production secret!
+# На хостинге лучше использовать переменные окружения, но для старта оставим так
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'muxian#pg$%gqk3l@k*#zh)1by*-w+jvo-pool*i4+9&*)&b2=')
 
-# 🚫 Режим отладки (True локально, False на хостинге)
+# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_DEBUG', 'True').lower() == 'true'
 
-# 🌐 Разрешённые хосты (добавлен домен PythonAnywhere)
+# ALLOWED_HOSTS настроен для PythonAnywhere
 ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', 'localhost,127.0.0.1,.pythonanywhere.com').split(',')
 
-#  Приложения
+# Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -25,14 +26,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'whitenoise.runserver_nostatic',  # Оптимизация статики
-    'main',                            # 👈 Ваше приложение
+    'whitenoise.runserver_nostatic',  # Для статики
+    'main',  # Твое приложение
 ]
 
-# 🛡️ Middleware
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # 👈 Отдаёт CSS/JS на хостинге
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Для статики
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -41,7 +41,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'site.urls'  # 👈 Указывает на папку site/
+ROOT_URLCONF = 'site.urls'
 
 TEMPLATES = [
     {
@@ -59,9 +59,9 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'site.wsgi.application'  # 👈 Указывает на папку site/
+WSGI_APPLICATION = 'site.wsgi.application'
 
-# 🗄️ База данных
+# Database
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -69,7 +69,7 @@ DATABASES = {
     }
 }
 
-# 🔐 Валидация паролей
+# Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
@@ -77,17 +77,17 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-# 🌍 Локализация
+# Internationalization
 LANGUAGE_CODE = 'ru'
 TIME_ZONE = 'Europe/Moscow'
 USE_I18N = True
 USE_TZ = True
 
-# 📁 Статические файлы (CSS, JS, Images)
+# Static files (CSS, JavaScript, Images)
 STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'  # 👈 Сюда PythonAnywhere соберёт всю статику
+# Важно для PythonAnywhere: куда собираются статические файлы
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# ⚙️ Настройка WhiteNoise для продакшена
 STORAGES = {
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
